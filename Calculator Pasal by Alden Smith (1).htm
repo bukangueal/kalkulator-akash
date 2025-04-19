@@ -118,33 +118,40 @@
 
   <div class="total" id="hasilTotal">Total Denda: $0 | Total Sanksi: 0 bulan | Total Impound: 0 hari | Persidangan: Tidak</div>
 
-  <script>
-    function hitungTotal() {
-      const checkboxes = document.querySelectorAll('#formPelanggaran input[type="checkbox"]');
-      let totalDenda = 0;
-      let totalSanksi = 0;
-      let totalImpound = 0;
-      let butuhPersidangan = false;
+<script>
+  function hitungTotal() {
+    const checkboxes = document.querySelectorAll('#formPelanggaran input[type="checkbox"]');
+    let totalDenda = 0;
+    let totalSanksi = 0;
+    let totalImpound = 0;
+    let butuhPersidangan = false;
+    let pasalTerpilih = [];
 
-      checkboxes.forEach((box) => {
-        if (box.checked) {
-          totalDenda += parseInt(box.dataset.denda);
-          totalSanksi += parseInt(box.dataset.sanksi);
-          totalImpound += parseInt(box.dataset.impound);
-          if (box.dataset.persidangan === "yes") {
-            butuhPersidangan = true;
-          }
+    checkboxes.forEach((box) => {
+      if (box.checked) {
+        totalDenda += parseInt(box.dataset.denda);
+        totalSanksi += parseInt(box.dataset.sanksi);
+        totalImpound += parseInt(box.dataset.impound);
+        if (box.dataset.persidangan === "yes") {
+          butuhPersidangan = true;
         }
-      });
+        const label = box.nextElementSibling.innerText;
+        pasalTerpilih.push(label);
+      }
+    });
 
-      document.getElementById('hasilTotal').innerText = `Total Denda: $${totalDenda} | Total Sanksi: ${totalSanksi} bulan | Total Impound: ${totalImpound} hari | Persidangan: ${butuhPersidangan ? 'Ya' : 'Tidak'}`;
+    let hasil = `Total Denda: $${totalDenda} | Total Sanksi: ${totalSanksi} bulan | Total Impound: ${totalImpound} hari | Persidangan: ${butuhPersidangan ? 'Ya' : 'Tidak'}`;
+    
+    if (pasalTerpilih.length > 0) {
+      hasil += `<br><br><strong>Pasal yang Dipilih:</strong><br>` + pasalTerpilih.map(p => `- ${p}`).join('<br>');
     }
 
-    function resetForm() {
-      const checkboxes = document.querySelectorAll('#formPelanggaran input[type="checkbox"]');
-      checkboxes.forEach((box) => box.checked = false);
-      document.getElementById('hasilTotal').innerText = 'Total Denda: $0 | Total Sanksi: 0 bulan | Total Impound: 0 hari | Persidangan: Tidak';
-    }
-  </script>
-</body>
-</html>
+    document.getElementById('hasilTotal').innerHTML = hasil;
+  }
+
+  function resetForm() {
+    const checkboxes = document.querySelectorAll('#formPelanggaran input[type="checkbox"]');
+    checkboxes.forEach((box) => box.checked = false);
+    document.getElementById('hasilTotal').innerHTML = 'Total Denda: $0 | Total Sanksi: 0 bulan | Total Impound: 0 hari | Persidangan: Tidak';
+  }
+</script>
