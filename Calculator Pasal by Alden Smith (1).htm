@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulator Denda & Sanksi by Alden Smith</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h2 { margin-bottom: 10px; }
+    .pelanggaran { margin-bottom: 10px; }
+    .pelanggaran label { margin-left: 8px; }
+    .total { margin-top: 20px; font-weight: bold; font-size: 18px; }
+    .button-container { margin-top: 20px; }
+    .option { margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Kalkulator Denda & Sanksi by Alden Smith</h2>
+
+  <form id="formPelanggaran">
+    <!-- Pasal 1 -->
+    <h3>Pasal 1 - Pelanggaran Kendaraan</h3>
+<div class="pelanggaran"><input type="checkbox" data-denda="4000" data-sanksi="0" data-impound="2" data-persidangan="no"><label>1.1 Parkir sembarangan (4000$ + IMP 2 hari)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="2000" data-sanksi="0" data-impound="0" data-persidangan="no"><label>1.2 Tidak memakai helm atau seatbelt (2000$)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="2000" data-sanksi="0" data-impound="0" data-persidangan="no"><label>1.3 Berkendara tidak pada jalurnya (2000$)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="3000" data-sanksi="0" data-impound="0" data-persidangan="no"><label>1.4 Ugal-ugalan di jalan (3000$)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="5000" data-sanksi="15" data-impound="2" data-persidangan="no"><label>1.5 Mengikuti balap liar (5000$ + IMP 2 hari + 15 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="3000" data-sanksi="0" data-impound="1" data-persidangan="no"><label>1.6 Modifikasi ilegal pada kendaraan (3000$ + IMP 1 hari)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="6000" data-sanksi="0" data-impound="3" data-persidangan="no"><label>1.7 Kendaraan tidak ada plate (6000$ + IMP 3 hari)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="5000" data-sanksi="0" data-impound="0" data-persidangan="no"><label>1.8 Berkendara tidak memiliki SIM (5000$)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="3000" data-sanksi="0" data-impound="0" data-persidangan="no"><label>1.9 Berkendara dalam kondisi mengantuk (3000$)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="5000" data-sanksi="0" data-impound="0" data-persidangan="no"><label>1.10 Berkendara melebihi kecepatan 80km/jam (5000$)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="5000" data-sanksi="0" data-impound="0" data-persidangan="no"><label>1.11 Berkendara melebihi muatan atau penumpang (5000$)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="7000" data-sanksi="0" data-impound="3" data-persidangan="no"><label>1.12 Kendaraan berada di lokasi peperangan (7000$ + IMP 3 hari)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="4000" data-sanksi="0" data-impound="4" data-persidangan="no"><label>1.13 Kendaraan suspect (4000$ + IMP 4 hari)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="8000" data-sanksi="0" data-impound="4" data-persidangan="no"><label>1.14 Kendaraan berada di daerah terlarang (8000$ + IMP 4 hari)</label></div>
+
+
+    <!-- Pasal 2 -->
+<h3>Pasal 2 - Pelanggaran Ringan</h3>
+<div class="pelanggaran"><input type="checkbox" data-denda="4000" data-sanksi="10" data-impound="0" data-persidangan="no"><label>2.1 Membawa minuman beralkohol (4000$ + 10 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="5000" data-sanksi="15" data-impound="0" data-persidangan="no"><label>2.2 Mengganggu ketertiban umum (5000$ + 15 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="5000" data-sanksi="0" data-impound="0" data-persidangan="no"><label>2.3 Tidak membawa kartu identitas (KTP) (5000$)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="5000" data-sanksi="20" data-impound="0" data-persidangan="no"><label>2.4 Telanjang / memakai topeng di area publik (5000$ + 20 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="3000" data-sanksi="10" data-impound="0" data-persidangan="no"><label>2.5 Pencemaran nama baik seseorang (3000$ + 10 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="6000" data-sanksi="20" data-impound="0" data-persidangan="no"><label>2.6 Menghancurkan kendaraan orang lain (6000$ + 20 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="8000" data-sanksi="15" data-impound="0" data-persidangan="no"><label>2.7 Perjudian/Taruhan (8000$ + 15 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="4000" data-sanksi="10" data-impound="0" data-persidangan="no"><label>2.8 Mabuk di area publik (4000$ + 10 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="5000" data-sanksi="25" data-impound="0" data-persidangan="no"><label>2.9 Melakukan kekerasan berupa pemukulan (5000$ + 25 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="8000" data-sanksi="30" data-impound="0" data-persidangan="no"><label>2.10 Mencoba menyuap petugas (8000$ + 30 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="5000" data-sanksi="15" data-impound="0" data-persidangan="no"><label>2.11 Menghancurkan properti orang lain (5000$ + 15 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="5000" data-sanksi="10" data-impound="0" data-persidangan="no"><label>2.12 Tindakan mengeksploitasi privasi orang lain (5000$ + 10 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="7000" data-sanksi="20" data-impound="0" data-persidangan="no"><label>2.13 Memberikan informasi palsu di 110 (7000$ + 20 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="8000" data-sanksi="30" data-impound="0" data-persidangan="no"><label>2.14 Menyembunyikan barang ilegal (8000$ + 30 bulan)</label></div>
+
+
+    <!-- Pasal 3 -->
+    <h3>Pasal 3 - Pelanggaran Sedang (A)</h3>
+    <div class="pelanggaran"><input type="checkbox" data-denda="8000" data-sanksi="20" data-impound="0" data-persidangan="no"><label>3.1 Menghina instansi secara lisan / tulisan (8000$ + 20 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="10000" data-sanksi="30" data-impound="0" data-persidangan="no"><label>3.2 Berada di zona merah / zona terlarang (10000$ + 30 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="5000" data-sanksi="20" data-impound="0" data-persidangan="no"><label>3.3 Pemakai / pecandu barang ilegal (5000$ + 20 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="12000" data-sanksi="30" data-impound="0" data-persidangan="no"><label>3.4 Menghilangkan barang bukti (12000$ + 30 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="5000" data-sanksi="25" data-impound="0" data-persidangan="no"><label>3.5 Menyerang petugas dengan sengaja (5000$ + 25 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="8000" data-sanksi="25" data-impound="0" data-persidangan="no"><label>3.6 Menyamar sebagai staf instansi (8000$ + 25 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="15000" data-sanksi="35" data-impound="0" data-persidangan="no"><label>3.7 Melawan petugas saat penangkapan (15000$ + 35 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="5000" data-sanksi="15" data-impound="0" data-persidangan="no"><label>3.8 Mengganggu petugas yang sedang bertugas (5000$ + 15 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="10000" data-sanksi="25" data-impound="0" data-persidangan="no"><label>3.9 Menodongkan senjata api ke pada orang lain (10000$ + 25 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="8000" data-sanksi="20" data-impound="0" data-persidangan="no"><label>3.10 Memberikan informasi palsu kepada petugas (8000$ + 20 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="10000" data-sanksi="30" data-impound="0" data-persidangan="no"><label>3.11 Melakukan perburuan ilegal (10000$ + 30 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="7000" data-sanksi="20" data-impound="0" data-persidangan="no"><label>3.12 Menghakimi orang tanpa prosedur yang sah (7000$ + 20 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="6000" data-sanksi="15" data-impound="0" data-persidangan="no"><label>3.13 Pembobolan kendaraan atau rumah (6000$ + 15 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="15000" data-sanksi="30" data-impound="0" data-persidangan="no"><label>3.14 Mengajak warga untuk melakukan demo (15000$ + 30 bulan)</label></div>
+
+    <!-- Pasal 4 -->
+    <h3>Pasal 4 - Pelanggaran Sedang (B)</h3>
+<div class="pelanggaran"><input type="checkbox" data-denda="10000" data-sanksi="30" data-impound="0" data-persidangan="no"><label>4.1 Membawa barang ilegal berupa kanabis &lt; 20 (10000$ + 30 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="15000" data-sanksi="40" data-impound="0" data-persidangan="no"><label>4.2 Membawa barang ilegal berupa kanabis &gt; 20 (15000$ + 40 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="15000" data-sanksi="30" data-impound="0" data-persidangan="no"><label>4.3 Membawa barang ilegal berupa marijuana &lt; 20 (15000$ + 30 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="20000" data-sanksi="40" data-impound="0" data-persidangan="no"><label>4.4 Membawa barang ilegal berupa marijuana &gt; 20 (20000$ + 40 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="12000" data-sanksi="25" data-impound="0" data-persidangan="no"><label>4.5 Membawa uang kotor / merah &lt; 5000$ (12000$ + 25 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="18000" data-sanksi="35" data-impound="0" data-persidangan="no"><label>4.6 Membawa uang kotor / merah &gt; 5000$ (18000$ + 35 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="15000" data-sanksi="30" data-impound="0" data-persidangan="no"><label>4.7 Berada di tempat produksi obat terlarang (15000$ + 30 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="18000" data-sanksi="30" data-impound="0" data-persidangan="no"><label>4.8 Menjual belikan obat-obatan terlarang (18000$ + 30 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="25000" data-sanksi="40" data-impound="0" data-persidangan="no"><label>4.9 Menjual belikan senjata api kepada orang lain (25000$ + 40 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="12000" data-sanksi="25" data-impound="0" data-persidangan="no"><label>4.10 Memperlihatkan senjata di area publik (12000$ + 25 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="5000" data-sanksi="20" data-impound="0" data-persidangan="no"><label>4.11 Pecandu/pengguna obat-obatan terlarang (5000$ + 20 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="40000" data-sanksi="50" data-impound="0" data-persidangan="no"><label>4.12 Melakukan tindakan perampokan warung (40000$ + 50 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="25000" data-sanksi="35" data-impound="0" data-persidangan="no"><label>4.13 Melakukan tindakan perampokan ATM (25000$ + 35 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="55000" data-sanksi="70" data-impound="0" data-persidangan="no"><label>4.14 Melakukan perampokan bank besar (55000$ + 70 bulan)</label></div>
+
+    <!-- Pasal 5 -->
+    <h3>Pasal 5 - Pelanggaran Berat</h3>
+<div class="pelanggaran"><input type="checkbox" data-denda="10000" data-sanksi="30" data-impound="0" data-persidangan="no"><label>5.1 Membawa senjata ilegal &lt;40 ammo (RIFLE, SLC, DE) (10000$ + 30 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="15000" data-sanksi="40" data-impound="0" data-persidangan="no"><label>5.2 Membawa senjata ilegal &gt;40 ammo (RIFLE, SLC, DE) (15000$ + 40 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="12000" data-sanksi="45" data-impound="0" data-persidangan="no"><label>5.3 Membawa senjata berat ilegal &lt;50 (AK47, SG, UZI) (12000$ + 45 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="20000" data-sanksi="55" data-impound="0" data-persidangan="no"><label>5.4 Membawa senjata berat ilegal &gt;50 (AK47, SG, UZI) (20000$ + 55 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="20000" data-sanksi="40" data-impound="0" data-persidangan="no"><label>5.5 Melindungi penjahat/narapidana (DPO) (20000$ + 40 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="25000" data-sanksi="50" data-impound="0" data-persidangan="no"><label>5.6 Membantu penjahat untuk keluar dari penjara (25000$ + 50 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="0" data-sanksi="0" data-impound="0" data-persidangan="yes"><label>5.7 Melakukan pembunuhan berencana (Persidangan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="10000" data-sanksi="20" data-impound="0" data-persidangan="no"><label>5.8 Penyanderaan terhadap warga (10000$ + 20 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="15000" data-sanksi="30" data-impound="0" data-persidangan="no"><label>5.9 Penyanderaan terhadap instansi (15000$ + 30 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="12000" data-sanksi="25" data-impound="0" data-persidangan="no"><label>5.10 Penembakan terhadap warga (12000$ + 25 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="18000" data-sanksi="35" data-impound="0" data-persidangan="no"><label>5.11 Penembakan terhadap instansi (18000$ + 35 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="20000" data-sanksi="45" data-impound="0" data-persidangan="no"><label>5.12 Peperangan antar kelompok (20000$ + 45 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="15000" data-sanksi="20" data-impound="0" data-persidangan="no"><label>5.13 Pembegalan terhadap warga (15000$ + 20 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="20000" data-sanksi="25" data-impound="0" data-persidangan="no"><label>5.14 Pembegalan terhadap instansi (20000$ + 25 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="12000" data-sanksi="20" data-impound="0" data-persidangan="no"><label>5.15 Mengancam seseorang menggunakan senjata (12000$ + 20 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="30000" data-sanksi="40" data-impound="0" data-persidangan="no"><label>5.16 Berada di tempat crafting persenjataan (30000$ + 40 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="35000" data-sanksi="60" data-impound="0" data-persidangan="no"><label>5.17 Mengganggu jelanya peleburan senjata (35000$ + 60 bulan)</label></div>
+<div class="pelanggaran"><input type="checkbox" data-denda="40000" data-sanksi="80" data-impound="0" data-persidangan="no"><label>5.18 Mengganggu pengisian STOGS bahan persenjataan FAF (40000$ + 80 bulan)</label></div>
+
+
+    <div class="button-container">
+      <button type="button" onclick="hitungTotal()">Hitung Total</button>
+      <button type="button" onclick="resetForm()">Reset</button>
+    </div>
+  </form>
+
+  <div class="total" id="hasilTotal">Total Denda: $0 | Total Sanksi: 0 bulan | Total Impound: 0 hari | Persidangan: Tidak</div>
+
+  <script>
+    function hitungTotal() {
+      const checkboxes = document.querySelectorAll('#formPelanggaran input[type="checkbox"]');
+      let totalDenda = 0;
+      let totalSanksi = 0;
+      let totalImpound = 0;
+      let butuhPersidangan = false;
+
+      checkboxes.forEach((box) => {
+        if (box.checked) {
+          totalDenda += parseInt(box.dataset.denda);
+          totalSanksi += parseInt(box.dataset.sanksi);
+          totalImpound += parseInt(box.dataset.impound);
+          if (box.dataset.persidangan === "yes") {
+            butuhPersidangan = true;
+          }
+        }
+      });
+
+      document.getElementById('hasilTotal').innerText = `Total Denda: $${totalDenda} | Total Sanksi: ${totalSanksi} bulan | Total Impound: ${totalImpound} hari | Persidangan: ${butuhPersidangan ? 'Ya' : 'Tidak'}`;
+    }
+
+    function resetForm() {
+      const checkboxes = document.querySelectorAll('#formPelanggaran input[type="checkbox"]');
+      checkboxes.forEach((box) => box.checked = false);
+      document.getElementById('hasilTotal').innerText = 'Total Denda: $0 | Total Sanksi: 0 bulan | Total Impound: 0 hari | Persidangan: Tidak';
+    }
+  </script>
+</body>
+</html>
