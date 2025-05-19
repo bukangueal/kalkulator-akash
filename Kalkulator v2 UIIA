@@ -24,9 +24,11 @@
   <div class="hasil" id="hasil">
     <p><strong>Total Denda:</strong> <span id="totalDenda">$0</span></p>
     <p><strong>Total Masa Tahanan:</strong> <span id="totalTahanan">0 bulan</span></p>
+    <p><strong>Total Masa Sita:</strong> <span id="totalImpound">0 hari</span></p>
   </div>
 
   <div id="hasilPilihan"></div>
+
 
   <script>
     const dataPelanggaran = {
@@ -134,7 +136,7 @@
       ]
     };
 
-function renderPelanggaran() {
+    function renderPelanggaran() {
       const container = document.getElementById('pelanggaran-container');
       for (let pasal in dataPelanggaran) {
         const section = document.createElement('div');
@@ -156,7 +158,7 @@ function renderPelanggaran() {
 
     function hitungTotal() {
       const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-      let totalDenda = 0, totalTahanan = 0, hasilHTML = "<h3>Pasal yang Dipilih:</h3><ul>";
+      let totalDenda = 0, totalTahanan = 0, totalImpoundDays = 0, hasilHTML = "<h3>Pasal yang Dipilih:</h3><ul>";
 
       checkboxes.forEach(cb => {
         const denda = parseInt(cb.dataset.denda) || 0;
@@ -164,17 +166,26 @@ function renderPelanggaran() {
         const nama = cb.dataset.nama || '';
         const sidang = cb.dataset.sidang === "true";
         const imp = cb.dataset.imp || '';
+        const impDays = parseInt(imp ? imp.split(' ')[0] : 0) || 0;
 
         totalDenda += denda;
         totalTahanan += tahanan;
+        totalImpoundDays += impDays;
 
-        hasilHTML += `<li><strong>${cb.value}</strong> - ${nama} ${sidang ? '(Persidangan)' : ''} ${imp ? `(Sita: ${imp})` : ''}</li>`;
+        const detailSanksi = [];
+        if (denda > 0) detailSanksi.push(`Denda: $${denda}`);
+        if (tahanan > 0) detailSanksi.push(`Tahanan: ${tahanan} bln`);
+        if (imp) detailSanksi.push(`Sita: ${imp}`);
+        if (sidang) detailSanksi.push('Persidangan');
+
+        hasilHTML += `<li><strong>${cb.value}</strong> - ${nama} (${detailSanksi.join(', ')})</li>`;
       });
 
       hasilHTML += "</ul>";
 
       document.getElementById('totalDenda').textContent = `$${totalDenda}`;
       document.getElementById('totalTahanan').textContent = `${totalTahanan} bulan`;
+      document.getElementById('totalImpound').textContent = `${totalImpoundDays} hari`;
       document.getElementById('hasilPilihan').innerHTML = hasilHTML;
     }
 
@@ -184,6 +195,7 @@ function renderPelanggaran() {
 
       document.getElementById('totalDenda').textContent = '$0';
       document.getElementById('totalTahanan').textContent = '0 bulan';
+      document.getElementById('totalImpound').textContent = '0 hari';
       document.getElementById('hasilPilihan').innerHTML = '';
     }
 
