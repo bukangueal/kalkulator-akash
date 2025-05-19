@@ -134,18 +134,18 @@
       ]
     };
 
-    function renderPelanggaran() {
+function renderPelanggaran() {
       const container = document.getElementById('pelanggaran-container');
       for (let pasal in dataPelanggaran) {
         const section = document.createElement('div');
         section.classList.add('pasal-section');
         section.innerHTML = `<h2>${pasal}</h2>`;
         dataPelanggaran[pasal].forEach(p => {
-          const { kode, nama, denda = 0, tahanan = 0, sidang = false } = p;
+          const { kode, nama, denda = 0, tahanan = 0, sidang = false, imp } = p;
           const label = `
             <label>
-              <input type="checkbox" value="${kode}" data-denda="${denda}" data-tahanan="${tahanan}" data-nama="${nama}" data-sidang="${sidang}">
-              ${kode} - ${nama} ${denda ? `($${denda}` : ''}${tahanan ? `, ${tahanan} bln` : ''}${sidang ? ', Persidangan' : ''}${denda || tahanan || sidang ? ')' : ''}
+              <input type="checkbox" value="${kode}" data-denda="${denda}" data-tahanan="${tahanan}" data-nama="${nama}" data-sidang="${sidang}" data-imp="${imp || ''}">
+              ${kode} - ${nama} ${denda ? `($${denda}` : ''}${tahanan ? `, ${tahanan} bln` : ''}${imp ? `, Sita ${imp}` : ''}${sidang ? ', Persidangan' : ''}${denda || tahanan || imp || sidang ? ')' : ''}
             </label>
           `;
           section.innerHTML += label;
@@ -163,11 +163,12 @@
         const tahanan = parseInt(cb.dataset.tahanan) || 0;
         const nama = cb.dataset.nama || '';
         const sidang = cb.dataset.sidang === "true";
+        const imp = cb.dataset.imp || '';
 
         totalDenda += denda;
         totalTahanan += tahanan;
 
-        hasilHTML += `<li><strong>${cb.value}</strong> - ${nama} ${sidang ? '(Persidangan)' : ''}</li>`;
+        hasilHTML += `<li><strong>${cb.value}</strong> - ${nama} ${sidang ? '(Persidangan)' : ''} ${imp ? `(Sita: ${imp})` : ''}</li>`;
       });
 
       hasilHTML += "</ul>";
