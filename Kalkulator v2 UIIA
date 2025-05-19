@@ -1,1 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Kalkulator Denda dan Sanksi</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h1, h2, h3 { margin-top: 20px; }
+    .pasal-section { margin-bottom: 30px; }
+    label { display: block; margin: 5px 0; }
+    .hasil { margin-top: 30px; padding: 15px; border: 1px solid #ccc; }
+    button { margin-right: 10px; padding: 10px 15px; font-weight: bold; }
+  </style>
+</head>
+<body>
 
+  <h1>Kalkulator Denda & Sanksi Hukum</h1>
+
+  <div id="pelanggaran-container"></div>
+
+  <button onclick="hitungTotal()">Hitung Total</button>
+  <button onclick="resetForm()">Reset</button>
+
+  <div class="hasil" id="hasil">
+    <p><strong>Total Denda:</strong> <span id="totalDenda">$0</span></p>
+    <p><strong>Total Masa Tahanan:</strong> <span id="totalTahanan">0 bulan</span></p>
+  </div>
+
+  <div id="hasilPilihan"></div>
+
+  <script>
+    const dataPelanggaran = {
+      "Pasal 3 - Narkoba dan Kejahatan Serius": [
+        { kode: "3.1", nama: "MEMBAWA BARANG ILEGAL BERUPA KANABIS ‹ 20", denda: 10000, tahanan: 30 },
+        { kode: "3.2", nama: "MEMBAWA BARANG ILEGAL BERUPA KANABIS > 20", denda: 15000, tahanan: 40 },
+        { kode: "3.3", nama: "MEMBAWA BARANG ILEGAL BERUPA MARIJUANA ‹ 20", denda: 15000, tahanan: 35 },
+        { kode: "3.4", nama: "MEMBAWA BARANG ILEGAL BERUPA MARIJUANA > 20", denda: 20000, tahanan: 45 },
+        { kode: "3.5", nama: "MEMBAWA UANG KOTOR / MERAH ‹ 5000$", denda: 12000, tahanan: 25 },
+        { kode: "3.6", nama: "MEMBAWA UANG KOTOR / MERAH > 5000$", denda: 18000, tahanan: 35 },
+        { kode: "3.7", nama: "MEMBAWA BARANG ILEGAL ‹ 30", denda: 10000, tahanan: 20 },
+        { kode: "3.8", nama: "MEMBAWA BARANG ILEGAL > 30", denda: 15000, tahanan: 30 },
+        { kode: "3.9", nama: "BERADA DI TEMPAT PRODUKSI OBAT TERLARANG", denda: 15000, tahanan: 40 },
+        { kode: "3.10", nama: "MENCURI / MEMBOBOL KENDARAAN", denda: 22000, tahanan: 35 },
+        { kode: "3.11", nama: "MENJUAL BELIKAN OBAT OBATAN TERLARANG", denda: 20000, tahanan: 30 },
+        { kode: "3.12", nama: "MEMPERLIHATKAN SENJATA DI AREA PUBLIK", denda: 18000, tahanan: 30 },
+        { kode: "3.13", nama: "PECANDU/PENGGUNA OBAT OBATAN TERLARANG", denda: 8000, tahanan: 25 },
+        { kode: "3.14", nama: "MELAKUKAN TINDAKAN PERAMPOKAN WARUNG", denda: 38000, tahanan: 50 },
+        { kode: "3.15", nama: "MELAKUKAN TINDAKAN PERAMPOKAN ATM", denda: 25000, tahanan: 40 },
+        { kode: "3.16", nama: "MELAKUKAN PERAMPOKAN BANK BESAR", denda: 45000, tahanan: 65 }
+      ],
+      "Pasal 4 - Kejahatan Terhadap Instansi dan Umum": [
+        { kode: "4.1", nama: "MENGHINA INSTANSI SECARA LISAN / TULISAN", denda: 8000, tahanan: 20 },
+        { kode: "4.2", nama: "BERADA DI ZONA MERAH / TERLARANG", denda: 10000, tahanan: 30 },
+        { kode: "4.3", nama: "PEMAKAI / PECANDU BARANG ILEGAL", denda: 5000, tahanan: 20 },
+        { kode: "4.4", nama: "MENGHILANGKAN BARANG BUKTI", denda: 12000, tahanan: 30 },
+        { kode: "4.5", nama: "MENYERANG PETUGAS DENGAN SENGAJA", denda: 5000, tahanan: 25 },
+        { kode: "4.6", nama: "MENYAMAR SEBAGAI STAF INSTANSI", denda: 8000, tahanan: 25 },
+        { kode: "4.7", nama: "MELAWAN PETUGAS SAAT PENANGKAPAN", denda: 15000, tahanan: 35 },
+        { kode: "4.8", nama: "MENGGANGGU PETUGAS YANG SEDANG BERTUGAS", denda: 5000, tahanan: 15 },
+        { kode: "4.9", nama: "MENODONGKAN SENJATA API", denda: 10000, tahanan: 25 },
+        { kode: "4.10", nama: "MEMBERIKAN INFORMASI PALSU", denda: 8000, tahanan: 20 },
+        { kode: "4.11", nama: "MELAKUKAN PERBURUAN ILEGAL", denda: 10000, tahanan: 30 },
+        { kode: "4.12", nama: "MENGHAKIMI ORANG TANPA PROSEDUR", denda: 7000, tahanan: 20 },
+        { kode: "4.13", nama: "PEMBOBOLAN KENDARAAN ATAU RUMAH", denda: 6000, tahanan: 15 },
+        { kode: "4.14", nama: "MENGAJAK WARGA UNTUK DEMO", denda: 15000, tahanan: 30 }
+      ],
+      "Pasal 5 - Senjata dan Terorisme": [
+        { kode: "5.1", nama: "MEMBAWA SENJATA ILEGAL < 40 AMMO (SLC,DE)", denda: 10000, tahanan: 28 },
+        { kode: "5.2", nama: "MEMBAWA SENJATA ILEGAL > 40 AMMO (SLC,DE)", denda: 15000, tahanan: 35 },
+        { kode: "5.3", nama: "MEMBAWA SENJATA ILEGAL > 80 AMMO (SLC,DE)", denda: 28000, tahanan: 42 },
+        { kode: "5.4", nama: "MEMBAWA SENJATA ILEGAL < 40 AMMO (SG,UZI)", denda: 12000, tahanan: 30 },
+        { kode: "5.5", nama: "MEMBAWA SENJATA ILEGAL > 40 AMMO (SG,UZI)", denda: 18000, tahanan: 38 },
+        { kode: "5.6", nama: "MEMBAWA SENJATA ILEGAL > 80 AMMO (SG,UZI)", denda: 30000, tahanan: 45 },
+        { kode: "5.7", nama: "MEMBAWA SENJATA BERAT < 50 AMMO (AK47)", denda: 15000, tahanan: 32 },
+        { kode: "5.8", nama: "MEMBAWA SENJATA BERAT > 50 AMMO (AK47)", denda: 20000, tahanan: 42 },
+        { kode: "5.9", nama: "MEMBAWA SENJATA BERAT > 100 AMMO (AK47)", denda: 35000, tahanan: 48 },
+        { kode: "5.10", nama: "MENJUAL SENJATA ILEGAL < 100 AMMO", denda: 18000, tahanan: 35 },
+        { kode: "5.11", nama: "MENJUAL SENJATA ILEGAL > 100 AMMO", denda: 25000, tahanan: 45 },
+        { kode: "5.12", nama: "MENJUAL SENJATA ILEGAL > 200 AMMO", denda: 40000, tahanan: 50 },
+        { kode: "5.13", nama: "MELINDUNGI PENJAHAT/NARAPIDANA", denda: 20000, tahanan: 40 },
+        { kode: "5.14", nama: "MEMBANTU PENJAHAT KABUR", denda: 25000, tahanan: 50 },
+        { kode: "5.15", nama: "PEMBUNUHAN BERENCANA", sidang: true },
+        { kode: "5.16", nama: "PENYANDERAAN TERHADAP WARGA", denda: 10000, tahanan: 20 },
+        { kode: "5.17", nama: "PENYANDERAAN TERHADAP INSTANSI", denda: 15000, tahanan: 30 },
+        { kode: "5.18", nama: "PENEMBAKAN TERHADAP WARGA", denda: 12000, tahanan: 25 },
+        { kode: "5.19", nama: "PENEMBAKAN TERHADAP INSTANSI", denda: 18000, tahanan: 35 },
+        { kode: "5.20", nama: "PEPERANGAN ANTAR KELOMPOK", denda: 20000, tahanan: 45 },
+        { kode: "5.21", nama: "PEMBEGALAN TERHADAP WARGA", denda: 15000, tahanan: 20 },
+        { kode: "5.22", nama: "PEMBEGALAN TERHADAP INSTANSI", denda: 20000, tahanan: 25 },
+        { kode: "5.23", nama: "MENGANCAM DENGAN SENJATA", denda: 12000, tahanan: 20 },
+        { kode: "5.24", nama: "BERADA DI TEMPAT CRAFTING PERSENJATAAN", denda: 30000, tahanan: 40 },
+        { kode: "5.25", nama: "MENGGANGGU PELEBURAN / STOGS", denda: 40000, tahanan: 80 }
+      ]
+    };
+
+    function renderPelanggaran() {
+      const container = document.getElementById('pelanggaran-container');
+      for (let pasal in dataPelanggaran) {
+        const section = document.createElement('div');
+        section.classList.add('pasal-section');
+        section.innerHTML = `<h2>${pasal}</h2>`;
+        dataPelanggaran[pasal].forEach(p => {
+          const { kode, nama, denda = 0, tahanan = 0, sidang = false } = p;
+          const label = `
+            <label>
+              <input type="checkbox" value="${kode}" data-denda="${denda}" data-tahanan="${tahanan}" data-nama="${nama}" data-sidang="${sidang}">
+              ${kode} - ${nama} ${denda ? `($${denda}` : ''}${tahanan ? `, ${tahanan} bln` : ''}${sidang ? ', Persidangan' : ''}${denda || tahanan || sidang ? ')' : ''}
+            </label>
+          `;
+          section.innerHTML += label;
+        });
+        container.appendChild(section);
+      }
+    }
+
+    function hitungTotal() {
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+      let totalDenda = 0, totalTahanan = 0, hasilHTML = "<h3>Pasal yang Dipilih:</h3><ul>";
+
+      checkboxes.forEach(cb => {
+        const denda = parseInt(cb.dataset.denda) || 0;
+        const tahanan = parseInt(cb.dataset.tahanan) || 0;
+        const nama = cb.dataset.nama || '';
+        const sidang = cb.dataset.sidang === "true";
+
+        totalDenda += denda;
+        totalTahanan += tahanan;
+
+        hasilHTML += `<li><strong>${cb.value}</strong> - ${nama} ${sidang ? '(Persidangan)' : ''}</li>`;
+      });
+
+      hasilHTML += "</ul>";
+
+      document.getElementById('totalDenda').textContent = `$${totalDenda}`;
+      document.getElementById('totalTahanan').textContent = `${totalTahanan} bulan`;
+      document.getElementById('hasilPilihan').innerHTML = hasilHTML;
+    }
+
+    function resetForm() {
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = false);
+
+      document.getElementById('totalDenda').textContent = '$0';
+      document.getElementById('totalTahanan').textContent = '0 bulan';
+      document.getElementById('hasilPilihan').innerHTML = '';
+    }
+
+    renderPelanggaran();
+  </script>
+</body>
+</html>
