@@ -24,6 +24,7 @@
   <div class="hasil" id="hasil">
     <p><strong>Total Denda:</strong> <span id="totalDenda">$0</span></p>
     <p><strong>Total Masa Tahanan:</strong> <span id="totalTahanan">0 bulan</span></p>
+    <p><strong>Total Sita:</strong> <span id="totalSita">0 hari</span></p>
   </div>
 
   <div id="hasilPilihan"></div>
@@ -156,7 +157,7 @@ function renderPelanggaran() {
 
     function hitungTotal() {
       const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-      let totalDenda = 0, totalTahanan = 0, hasilHTML = "<h3>Pasal yang Dipilih:</h3><ul>";
+      let totalDenda = 0, totalTahanan = 0, totalSita = 0, hasilHTML = "<h3>Pasal yang Dipilih:</h3><ul>";
 
       checkboxes.forEach(cb => {
         const denda = parseInt(cb.dataset.denda) || 0;
@@ -167,6 +168,7 @@ function renderPelanggaran() {
 
         totalDenda += denda;
         totalTahanan += tahanan;
+        totalSita += sita;
 
         hasilHTML += `<li><strong>${cb.value}</strong> - ${nama} ${sidang ? '(Persidangan)' : ''} ${imp ? `(Sita: ${imp})` : ''}</li>`;
       });
@@ -175,6 +177,7 @@ function renderPelanggaran() {
 
       document.getElementById('totalDenda').textContent = `$${totalDenda}`;
       document.getElementById('totalTahanan').textContent = `${totalTahanan} bulan`;
+      document.getElementById('totalSita').innerText = `${totalSita} hari`;
       document.getElementById('hasilPilihan').innerHTML = hasilHTML;
     }
 
