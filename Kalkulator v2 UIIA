@@ -31,7 +31,7 @@
 
   <script>
     const dataPelanggaran = {
-     "Pasal 1 - Pelanggaran Lalu Lintas": [
+      "Pasal 1 - Pelanggaran Lalu Lintas": [
         { kode: "1.1", nama: "PARKIR SEMBARANGAN", denda: 4000, imp: "2 HARI" },
         { kode: "1.2", nama: "TIDAK MEMAKAI HELM ATAU SEATBELT", denda: 2000 },
         { kode: "1.3", nama: "BERKENDARA TIDAK PADA JALURNYA", denda: 2000 },
@@ -72,7 +72,7 @@
         { kode: "2.19", nama: "BERISIK DI TEMPAT UMUM", denda: 5000, tahanan: 15 },
         { kode: "2.20", nama: "MENODONGKAN SENJATA TAJAM KE WARGA", denda: 6000, tahanan: 20 }
       ],
-     "Pasal 1 - Narkoba dan Kejahatan Serius": [
+      "Pasal 1 - Narkoba dan Kejahatan Serius": [
         { kode: "3.1", nama: "MEMBAWA BARANG ILEGAL BERUPA KANABIS ‹ 20", denda: 10000, tahanan: 30 },
         { kode: "3.2", nama: "MEMBAWA BARANG ILEGAL BERUPA KANABIS > 20", denda: 15000, tahanan: 40 },
         { kode: "3.3", nama: "MEMBAWA BARANG ILEGAL BERUPA MARIJUANA ‹ 20", denda: 15000, tahanan: 35 },
@@ -135,7 +135,7 @@
       ]
     };
 
-function renderPelanggaran() {
+    function renderPelanggaran() {
       const container = document.getElementById('pelanggaran-container');
       for (let pasal in dataPelanggaran) {
         const section = document.createElement('div');
@@ -168,7 +168,10 @@ function renderPelanggaran() {
 
         totalDenda += denda;
         totalTahanan += tahanan;
-        totalSita += sita;
+        if (imp) {
+            const sitaValue = parseInt(imp.split(' ')[0]) || 0;
+            totalSita += sitaValue;
+        }
 
         hasilHTML += `<li><strong>${cb.value}</strong> - ${nama} ${sidang ? '(Persidangan)' : ''} ${imp ? `(Sita: ${imp})` : ''}</li>`;
       });
