@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kalkulator UIIA</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      color: #333;
+    }
+    label {
+      display: block;
+      margin: 8px 0;
+    }
+    .hasil {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Kalkulator UIIA</h1>
+
+  <form id="formHukuman">
+    <div id="daftarPasal"></div>
+  </form>
+
+  <div class="hasil">
+    <p><strong>Total Denda:</strong> <span id="totalDenda">$0</span></p>
+    <p><strong>Total Masa Tahanan:</strong> <span id="totalTahanan">0 bulan</span></p>
+    <p><strong>Total Sita:</strong> <span id="totalSita">0 hari</span></p>
+  </div>
+
+  <script>
+    const dataPasal = [
+      { nama: 'Pasal 1', denda: 62000, tahanan: 15, imp: '19 HARI' },
+      { nama: 'Pasal 2', denda: 78000, tahanan: 230, imp: '' },
+      { nama: 'Pasal 3', denda: 124000, tahanan: 340, imp: '' },
+      { nama: 'Pasal 4', denda: 285000, tahanan: 500, imp: '' },
+      { nama: 'Pasal 5', denda: 329000, tahanan: 660, imp: '' },
+    ];
+
+    const daftar = document.getElementById('daftarPasal');
+    dataPasal.forEach((item, index) => {
+      const label = document.createElement('label');
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.name = 'pasal';
+      checkbox.value = index;
+      checkbox.setAttribute('data-denda', item.denda || 0);
+      checkbox.setAttribute('data-tahanan', item.tahanan || 0);
+      checkbox.setAttribute('data-imp', item.imp || '');
+      checkbox.addEventListener('change', hitungTotal);
+
+      label.appendChild(checkbox);
+      label.appendChild(document.createTextNode(` ${item.nama} — Denda: $${item.denda}, Tahanan: ${item.tahanan} bulan${item.imp ? ', Sita: ' + item.imp : ''}`));
+      daftar.appendChild(label);
+    });
+
+    function hitungTotal() {
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+      let totalDenda = 0;
+      let totalTahanan = 0;
+      let totalSita = 0;
+
+      checkboxes.forEach(cb => {
+        const denda = parseInt(cb.getAttribute('data-denda')) || 0;
+        const tahanan = parseInt(cb.getAttribute('data-tahanan')) || 0;
+        const sitaText = cb.getAttribute('data-imp') || "";
+        let sita = 0;
+
+        if (sitaText.includes("HARI")) {
+          const match = sitaText.match(/\d+/);
+          if (match) sita = parseInt(match[0]);
+        }
+
+        totalDenda += denda;
+        totalTahanan += tahanan;
+        totalSita += sita;
+      });
+
+      document.getElementById('totalDenda').innerText = `$${totalDenda.toLocaleString()}`;
+      document.getElementById('totalTahanan').innerText = `${totalTahanan} bulan`;
+      document.getElementById('totalSita').innerText = `${totalSita} hari`;
+    }
+  </script>
+</body>
+</html>
