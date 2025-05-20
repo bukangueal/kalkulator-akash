@@ -165,15 +165,34 @@
         const nama = cb.dataset.nama || '';
         const sidang = cb.dataset.sidang === "true";
         const imp = cb.dataset.imp || '';
+        let sitaHari = 0;
+        if (imp) {
+          sitaHari = parseInt(imp.split(' ')[0]) || 0;
+        }
 
         totalDenda += denda;
         totalTahanan += tahanan;
-        if (imp) {
-            const sitaValue = parseInt(imp.split(' ')[0]) || 0;
-            totalSita += sitaValue;
+        totalSita += sitaHari;
+
+        let detailSanksi = '';
+        if (denda > 0) {
+          detailSanksi += `$${denda}`;
+        }
+        if (tahanan > 0) {
+          if (detailSanksi) detailSanksi += ', ';
+          detailSanksi += `${tahanan} bln`;
+        }
+        if (sitaHari > 0) {
+          if (detailSanksi) detailSanksi += ' + ';
+          detailSanksi += `sita ${sitaHari} hari`;
+        }
+        if (sidang) {
+          if (detailSanksi) detailSanksi += ' + ';
+          detailSanksi += 'Persidangan';
         }
 
-        hasilHTML += `<li><strong>${cb.value}</strong> - ${nama} ${sidang ? '(Persidangan)' : ''} ${imp ? `(Sita: ${imp})` : ''}</li>`;
+        const tampilanDetail = detailSanksi ? ` (${detailSanksi})` : '';
+        hasilHTML += `<li><strong>${cb.value}</strong> - ${nama}${tampilanDetail}</li>`;
       });
 
       hasilHTML += "</ul>";
@@ -190,6 +209,7 @@
 
       document.getElementById('totalDenda').textContent = '$0';
       document.getElementById('totalTahanan').textContent = '0 bulan';
+      document.getElementById('totalSita').innerText = '0 hari';
       document.getElementById('hasilPilihan').innerHTML = '';
     }
 
