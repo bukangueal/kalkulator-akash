@@ -24,7 +24,7 @@
   <div class="hasil" id="hasil">
     <p><strong>Total Denda:</strong> <span id="totalDenda">$0</span></p>
     <p><strong>Total Masa Tahanan:</strong> <span id="totalTahanan">0 bulan</span></p>
-    <p><strong>Total Masa Sita:</strong> <span id="totalImpound">0 hari</span></p>
+    <p><strong>Total Masa Impound:</strong> <span id="totalImpound">0 hari</span></p>
   </div>
 
   <div id="hasilPilihan"></div>
@@ -145,7 +145,7 @@
           const label = `
             <label>
               <input type="checkbox" value="${kode}" data-denda="${denda}" data-tahanan="${tahanan}" data-nama="${nama}" data-sidang="${sidang}" data-imp="${imp || ''}">
-              ${kode} - ${nama} ${denda ? `($${denda}` : ''}${tahanan ? `, ${tahanan} bln` : ''}${imp ? `, Sita ${imp}` : ''}${sidang ? ', Persidangan' : ''}${denda || tahanan || imp || sidang ? ')' : ''}
+              ${kode} - ${nama} ${denda ? `($${denda}` : ''}${tahanan ? `, ${tahanan} bln` : ''}${imp ? `, Impound ${imp}` : ''}${sidang ? ', Persidangan' : ''}${denda || tahanan || imp || sidang ? ')' : ''}
             </label>
           `;
           section.innerHTML += label;
@@ -173,7 +173,7 @@
         const detailSanksi = [];
         if (denda > 0) detailSanksi.push(`Denda: $${denda}`);
         if (tahanan > 0) detailSanksi.push(`Tahanan: ${tahanan} bln`);
-        if (imp) detailSanksi.push(`Sita: ${imp}`);
+        if (imp) detailSanksi.push(`Impound: ${imp}`);
         if (sidang) detailSanksi.push('Persidangan');
 
         hasilHTML += `<li><strong>${cb.value}</strong> - ${nama} (${detailSanksi.join(', ')})</li>`;
