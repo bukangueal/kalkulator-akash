@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Kalkulator FAF by UIIA</title>
+  <title>Kalkulator LVPD by Akash</title>
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; }
     h1, h2, h3 { margin-top: 20px; }
@@ -14,7 +14,7 @@
 </head>
 <body>
 
-  <h1>Kalkulator FAF by UIIA</h1>
+  <h1>Kalkulator LVPD by Akash</h1>
 
   <div id="pelanggaran-container"></div>
 
@@ -33,23 +33,21 @@
   <script>
     const dataPelanggaran = {
      "Pasal 1 - Pelanggaran Lalu Lintas": [
-        { kode: "1.1", nama: "PARKIR SEMBARANGAN", denda: 4000, imp: "2 HARI" },
-        { kode: "1.2", nama: "TIDAK MEMAKAI HELM ATAU SEATBELT", denda: 2000 },
-        { kode: "1.3", nama: "BERKENDARA TIDAK PADA JALURNYA", denda: 2000 },
-        { kode: "1.4", nama: "UGAL UGALAN DI JALAN", denda: 3000 },
-        { kode: "1.5", nama: "MENGIKUTI BALAP LIAR", denda: 5000, imp: "2 HARI", tahanan: 15 },
-        { kode: "1.6", nama: "MODIFIKASI ILEGAL PADA KENDARAAN", denda: 3000, imp: "1 HARI" },
-        { kode: "1.7", nama: "KENDARAAN TIDAK ADA PLATE", denda: 6000, imp: "3 HARI" },
-        { kode: "1.8", nama: "BERKENDARA TIDAK MEMILIKI SIM", denda: 5000 },
-        { kode: "1.9", nama: "BERKENDARA DALAM KONDISI MENGANTUK", denda: 3000 },
-        { kode: "1.10", nama: "BERKENDARA MELEBIHI KECEPATAN 80KM/JAM", denda: 5000 },
-        { kode: "1.11", nama: "BERKENDARA MELEBIHI MUATAN/PENUMPANG", denda: 5000 },
-        { kode: "1.12", nama: "MELAWAN SAAT DI BERHENTIKAN PETUGAS", denda: 4000, imp: "2 HARI" },
-        { kode: "1.13", nama: "KENDARAAN MEMBAWA BARANG ILEGAL", denda: 6000, imp: "4 HARI" },
-        { kode: "1.14", nama: "MELAWAN ARAH SAAT BERKENDARA", denda: 5000, imp: "1 HARI" },
-        { kode: "1.15", nama: "MENABRAK KENDARAAN WARGA", denda: 3000 },
-        { kode: "1.16", nama: "BERHENTI DI TENGAH JALAN", denda: 3000 },
-        { kode: "1.17", nama: "MENGGANGGU PENGENDARA LAIN", denda: 4000 }
+        { kode: "A01", nama: "General Traffic Violations", denda: 2000 },
+        { kode: "A02", nama: "Failed to Pay Any Tickets Given", denda: 5000, tahanan: 15 },
+        { kode: "A03", nama: "Driving without License", denda: 2000 },
+        { kode: "A04", nama: "Reckless Driving", denda: 2000 },
+        { kode: "A05", nama: "Speeding", denda: 2000 },
+        { kode: "A06", nama: "Improper Vehicle Parking", denda: 3000, imp: "2 HARI" },
+        { kode: "A07", nama: "Evading Police Stop", denda: 2000, imp: "2 HARI" },
+        { kode: "A08", nama: "Illegal Modifications on Vehicle", denda: 2000, imp: "2 HARI" },
+        { kode: "A09", nama: "Unregistered Vehicle", denda: 2000, imp: "2 HARI" },
+        { kode: "A10", nama: "Vehicular Endangerment", denda: 3000 },
+        { kode: "A11", nama: "Failure to Yield to Emergency Vehicles", denda: 2000 },
+        { kode: "A12", nama: "Failure to Yield to A Roadblock", denda: 3000, imp: "1 HARI" },
+        { kode: "A13", nama: "Following An Emergency Vehicle", denda: 2000, imp: "1 HARI" },
+        { kode: "A14", nama: "Driving Under Influence", denda: 2000, imp: "2 HARI" },
+        { kode: "A15", nama: "Vehicular Manslaughter", denda: 5000, imp: "3 HARI" },
       ],
       "Pasal 2 - Pelanggaran Ringan": [
         { kode: "2.1", nama: "TIDAK MEMBAWA KARTU IDENTITAS (KTP)", denda: 5000 },
